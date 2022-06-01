@@ -1,0 +1,61 @@
+<div class="flex flex-col items-center w-full mt-20">
+  <div
+    class="flex flex-col items-center justify-center p-4 md:p-6 max-w-md rounded-xl border shadow-md bg-slate-100"
+  >
+    <h2 class="text-xl md:text-2xl mb-4">Upload your images</h2>
+    <div class="flex items-center mb-4">
+      <label class="mr-2">Choose your upload type</label>
+      <mat-form-field appearance="fill">
+        <mat-label>Image type</mat-label>
+        <mat-select [formControl]="uploadType" name="uploadType">
+          <mat-option *ngFor="let type of imageTypes" [value]="type.value">
+            {{ type.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div
+      class="w-full px-4 border-solid shadow"
+      ngx-dropzone
+      (change)="onSelect($event)"
+      accept="image/jpeg,image/jpg,image/png"
+    >
+      <ngx-dropzone-label>
+        Upload your
+        <span class="text-blue-600 font-medium">
+          {{ uploadType.value }}
+        </span>
+      </ngx-dropzone-label>
+      <ngx-dropzone-image-preview
+        ngProjectAs="ngx-dropzone-preview"
+        *ngFor="let image of uploadImages; let i = index"
+        [file]="image.file"
+        [removable]="true"
+        (removed)="onRemove(i)"
+      >
+        <ngx-dropzone-label>
+          {{ image.file.name }} ({{ percentages[i] }}%)
+        </ngx-dropzone-label>
+      </ngx-dropzone-image-preview>
+    </div>
+    <div class="py-2">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onUploadImages()"
+        *ngIf="isUploading !== 'uploaded'"
+        [disabled]="isUploading === 'uploading'"
+      >
+        Upload
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onGeneratePhoto()"
+        *ngIf="isUploading === 'uploaded'"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

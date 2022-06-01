@@ -1,0 +1,103 @@
+<div class="flex relative flex-auto w-full h-full flex-row-reverse">
+  <!-- Side bar -->
+  <div class="flex flex-col h-full w-72 bg-slate-100 shadow-md">
+    <mat-tab-group>
+      <mat-tab label="Selfie">
+        <div
+          class="p-2 overflow-hidden hover:bg-slate-500"
+          (click)="setSelfie(item)"
+          *ngFor="let item of selfieImages"
+        >
+          <img
+            class="bg-cover w-12 h-12 mr-2"
+            [src]="item.url"
+            [alt]="item.name"
+          />
+          <span class="text-sm">
+            {{ item.name }}
+          </span>
+        </div>
+      </mat-tab>
+      <mat-tab label="Frame">
+        <div
+          class="p-2 overflow-hidden hover:bg-slate-500"
+          (click)="setFrame(item)"
+          *ngFor="let item of frameImages"
+        >
+          <img
+            class="bg-cover w-12 h-12 mr-2"
+            [src]="item.url"
+            [alt]="item.name"
+          />
+          <span class="text-sm">
+            {{ item.name }}
+          </span>
+        </div>
+      </mat-tab>
+      <mat-tab label="Custom Frame">
+        <div class="flex flex-col p-2">
+          <label class="text-center">Custom dimension</label>
+          <mat-form-field appearance="fill">
+            <mat-label>X</mat-label>
+            <input type="number" matInput [formControl]="customFrameWidth" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Y</mat-label>
+            <input type="number" matInput [formControl]="customFrameHeight" />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" (click)="setCustomFrame()">
+            Set custom frame
+          </button>
+        </div>
+      </mat-tab>
+      <mat-tab label="Background">
+        <div
+          class="p-2 overflow-hidden hover:bg-slate-500"
+          (click)="setBackground(item)"
+          *ngFor="let item of backgroundImages"
+        >
+          <img
+            class="bg-cover w-12 h-12 mr-2"
+            [src]="item.url"
+            [alt]="item.name"
+          />
+          <span class="text-sm">
+            {{ item.name }}
+          </span>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="relative flex flex-1 w-full h-full justify-center">
+    <div class="absolute bottom-4 right-4 z-10">
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Upload button"
+        (click)="onDownloadPhoto()"
+      >
+        <mat-icon>save_alt</mat-icon>
+      </button>
+    </div>
+    <!-- Generated Photo -->
+    <div
+      class="relative flex justify-center w-full h-full object-contain bg-cover"
+      [style.background-image]="backgroundImage"
+      id="photo"
+    >
+      <div
+        class="absolute flex items-center justify-center top-40 z-10 p-2 bg-gray-200 object-contain bg-cover"
+        [ngClass]="{
+          frame: isCustomFrame,
+          'w-48 h-36 p-4': !isCustomFrame
+        }"
+        [style.background-image]="!isCustomFrame ? frameImage : null"
+        [style.width]="isCustomFrame ? customFrameWidth.value + 'px' : null"
+        [style.height]="isCustomFrame ? customFrameHeight.value + 'px' : null"
+      >
+        <img [src]="selfieImage" class="max-h-full" alt="Selfie Photo" />
+      </div>
+    </div>
+  </div>
+</div>

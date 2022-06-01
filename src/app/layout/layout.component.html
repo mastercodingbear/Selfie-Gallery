@@ -1,0 +1,12 @@
+<!-- Toolbar -->
+<mat-toolbar class="absolute" color="primary">
+  <mat-icon class="mr-2">photo_library</mat-icon>
+  <span>Selfie Gallery</span>
+  <div class="spacer"></div>
+  <a class="text-base mx-2" [routerLink]="'/upload'">Upload</a>
+  <a class="text-base mx-2" [routerLink]="'/generate'">Generate</a>
+</mat-toolbar>
+
+<div class="w-full h-screen pt-16" role="main">
+  <router-outlet></router-outlet>
+</div>

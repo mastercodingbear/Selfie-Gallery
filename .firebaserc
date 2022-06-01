@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "photogallery-bbc21": {
+      "hosting": {
+        "photo-gallery": [
+          "selfie-gallery"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "photogallery-bbc21"
+  }
+}

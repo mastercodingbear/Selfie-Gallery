@@ -1,0 +1,33 @@
+.frame {
+  background-color: #ddc;
+  border: solid 1.5vmin #eee;
+  border-bottom-color: #fff;
+  border-left-color: #eee;
+  border-radius: 2px;
+  border-right-color: #eee;
+  border-top-color: #ddd;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25) inset,
+    0 5px 10px 5px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  text-align: center;
+}
+.frame:before {
+  border-radius: 2px;
+  bottom: -0.5vmin;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
+  content: "";
+  left: -0.5vmin;
+  position: absolute;
+  right: -0.5vmin;
+  top: -0.5vmin;
+}
+.frame:after {
+  border-radius: 2px;
+  bottom: -0.75vmin;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  content: "";
+  left: -0.75vmin;
+  position: absolute;
+  right: -0.75vmin;
+  top: -0.75vmin;
+}
