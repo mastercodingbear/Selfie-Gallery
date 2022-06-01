@@ -20,7 +20,7 @@ export const appRoutes: Route[] = [
       },
       // Generate photo page
       {
-        path: 'generate',
+        path: '',
         loadChildren: (): any => import('app/modules/generate-photo/generate-photo.module').then(m => m.GeneratePhotoModule)
       }
     ]
